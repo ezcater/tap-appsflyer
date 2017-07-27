@@ -275,13 +275,9 @@ def sync_installs():
     # need to reverse them in order to provide sensible STATE
     # checkpoints.  According to the API documentation, there may be
     # as many as 200,000 rows here but I don't have a better solution.
-    rows = []
-    for row in reader:
-        rows.append(row)
-    rows = reversed(rows)
-
+    #
     # Emit updated records with state checkpoint
-    for i, row in enumerate(rows):
+    for i, row in enumerate(reversed(list(reader))):
         record = xform(row, schema)
         singer.write_record("installs", record)
         utils.update_state(STATE, "installs", record["attributed_touch_time"])
@@ -411,13 +407,9 @@ def sync_in_app_events():
     # need to reverse them in order to provide sensible STATE
     # checkpoints.  According to the API documentation, there may be
     # as many as 200,000 rows here but I don't have a better solution.
-    rows = []
-    for row in reader:
-        rows.append(row)
-    rows = reversed(rows)
-
+    #
     # Emit updated records with state checkpoint
-    for i, row in enumerate(rows):
+    for i, row in enumerate(reversed(list(reader))):
         record = xform(row, schema)
         singer.write_record("in_app_events", record)
         utils.update_state(STATE, "in_app_events", record["event_time"])  # NOTE: This is different in each report

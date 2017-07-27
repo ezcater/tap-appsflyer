@@ -8,6 +8,11 @@ This tap:
 - Outputs the schema for each resource
 - Incrementally pulls data based on the input state
 
+### Obtaining your `app_id` and `app_token`
+
+* `app_id` can be found on your [My Apps](https://hq1.appsflyer.com/apps/myapps).  It's displayed under the name of your application.
+* `app_token` can be found on the application's [API Access](https://hq1.appsflyer.com/dashboard/apiaccess/your-app-id-here) page under "Your API Key".
+
 ---
 
 Copyright &copy; 2017 ezCater, Inc.
